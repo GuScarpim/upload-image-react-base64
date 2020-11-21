@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import * as S from './upload';
 
-// import { BsUpload } from 'react-icons/bs';
+import { BsUpload } from 'react-icons/bs';
+import { ImSpinner2 } from 'react-icons/im';
 import Logo from '../assets/logo.png';
+import { setTimeout } from 'timers';
 
 export default function Upload() {
   const [file, setFile] = useState<string>();
   const [imagePreview, setImagePreview] = useState<any>("");
   const [base64, setBase64] = useState<string>();
-  const [imagePrint, setImagePrint] = useState<string>();
+  const [name, setName] = useState<string>();
+  const [size, setSize] = useState<string>();
   const [active, setActive] = useState<any>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const onChange = (e: any) => {
     console.log("file", e.target.files[0]);
@@ -27,10 +31,16 @@ export default function Upload() {
   }
 
   const onFileSubmit = (e: any) => {
+    setIsLoading(true);
     e.preventDefault()
     console.log("bine", base64)
     let payload = { image: base64 }
     console.log("payload", payload)
+
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 2000)
+
   }
 
   const photoUpload = (e: any) => {
@@ -42,6 +52,8 @@ export default function Upload() {
     if (reader !== undefined && file !== undefined) {
       reader.onloadend = () => {
         setFile(file)
+        setSize(file.size);
+        setName(file.name)
         setImagePreview(reader.result)
       }
       reader.readAsDataURL(file);
@@ -57,10 +69,43 @@ export default function Upload() {
   return (
     <S.Container>
       <form onSubmit={(e) => onFileSubmit(e)} onChange={(e) => onChange(e)}>
-        <S.Card logo={Logo}>
-          <img src={imagePreview} alt="Icone adicionar" />
-          <input type="file" name="avatar" id="file" accept=".jpef, .png, .jpg" onChange={photoUpload} src={imagePreview} />
-          <button type="submit" >Salvar</button>
+        <S.Card logo={Logo}
+          width={imagePreview === "" ? 310 : 310}
+          height={imagePreview === "" ? 400 : 550} >
+
+          <S.Perfil top={imagePreview === "" ? -100 : -180}
+            width={imagePreview === "" ? 120 : 145}
+            height={imagePreview === "" ? 120 : 145} >
+            {imagePreview === "" ?
+              <BsUpload /> :
+              <img src={imagePreview} alt="Icone adicionar" />
+            }
+            <input type="file" name="avatar" id="file" accept=".jpef, .png, .jpg" onChange={photoUpload} src={imagePreview} />
+          </S.Perfil>
+
+          {imagePreview !== "" &&
+            <>
+              <section>
+                <label>Nome</label>
+                <span>{name}</span>
+
+                <label>Tamanho</label>
+                <span>{size}</span>
+              </section>
+
+              <button type="submit" >
+                {isLoading ?
+                  <S.Spinner>
+                    <ImSpinner2 />
+                  </S.Spinner> :
+                  <>
+                    Salvar
+                  </>
+                }
+              </button>
+              <button type="button" onClick={() => setImagePreview("")} >Remover</button>
+            </>
+          }
         </S.Card>
       </form>
     </S.Container>
