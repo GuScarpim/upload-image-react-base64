@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import * as S from './upload';
+
+// import { BsUpload } from 'react-icons/bs';
 import Logo from '../assets/logo.png';
 
 export default function Upload() {
   const [file, setFile] = useState<string>();
-  const [imagePreviewUrl, setImagePreviewUrl] = useState<any>();
-  const [base64TextString, setBase64TextString] = useState<string>();
+  const [imagePreview, setImagePreview] = useState<any>("");
+  const [base64, setBase64] = useState<string>();
   const [imagePrint, setImagePrint] = useState<string>();
   const [active, setActive] = useState<any>();
 
@@ -21,13 +23,13 @@ export default function Upload() {
 
   const _handleReaderLoaded = (readerEvt: any) => {
     let binaryString = readerEvt.target.result;
-    setBase64TextString(btoa(binaryString))
+    setBase64(btoa(binaryString))
   }
 
   const onFileSubmit = (e: any) => {
     e.preventDefault()
-    console.log("bine", base64TextString)
-    let payload = { image: base64TextString }
+    console.log("bine", base64)
+    let payload = { image: base64 }
     console.log("payload", payload)
   }
 
@@ -40,7 +42,7 @@ export default function Upload() {
     if (reader !== undefined && file !== undefined) {
       reader.onloadend = () => {
         setFile(file)
-        setImagePreviewUrl(reader.result)
+        setImagePreview(reader.result)
       }
       reader.readAsDataURL(file);
     }
@@ -56,8 +58,8 @@ export default function Upload() {
     <S.Container>
       <form onSubmit={(e) => onFileSubmit(e)} onChange={(e) => onChange(e)}>
         <S.Card logo={Logo}>
-          <img src={imagePreviewUrl} alt="Icone adicionar" />
-          <input type="file" name="avatar" id="file" accept=".jpef, .png, .jpg" onChange={photoUpload} src={imagePreviewUrl} />
+          <img src={imagePreview} alt="Icone adicionar" />
+          <input type="file" name="avatar" id="file" accept=".jpef, .png, .jpg" onChange={photoUpload} src={imagePreview} />
           <button type="submit" >Salvar</button>
         </S.Card>
       </form>
