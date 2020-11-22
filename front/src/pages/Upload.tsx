@@ -12,7 +12,6 @@ export default function Upload() {
   const [base64, setBase64] = useState<string>();
   const [name, setName] = useState<string>();
   const [size, setSize] = useState<string>();
-  const [active, setActive] = useState<any>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const onChange = (e: any) => {
@@ -60,10 +59,12 @@ export default function Upload() {
     }
   }
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    let activeP = active === 'edit' ? 'profile' : 'edit';
-    setActive({ active: activeP })
+  const remove = () => {
+    setFile("")
+    setImagePreview("")
+    setBase64("")
+    setName("")
+    setSize("")
   }
 
   return (
@@ -71,9 +72,9 @@ export default function Upload() {
       <form onSubmit={(e) => onFileSubmit(e)} onChange={(e) => onChange(e)}>
         <S.Card logo={Logo}
           width={imagePreview === "" ? 310 : 310}
-          height={imagePreview === "" ? 400 : 550} >
+          height={imagePreview === "" ? 400 : 480} >
 
-          <S.Perfil top={imagePreview === "" ? -100 : -180}
+          <S.Perfil top={imagePreview === "" ? 0 : -140}
             width={imagePreview === "" ? 120 : 145}
             height={imagePreview === "" ? 120 : 145} >
             {imagePreview === "" ?
@@ -103,7 +104,7 @@ export default function Upload() {
                   </>
                 }
               </button>
-              <button type="button" onClick={() => setImagePreview("")} >Remover</button>
+              <button type="button" onClick={remove} >Remover</button>
             </>
           }
         </S.Card>
