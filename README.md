@@ -1,6 +1,7 @@
 # Upload Image (Base64) ReactJs - TypeScript
 
 Projeto desenvolvido com o intuito de mostrar uma forma de fazer upload de imagem no formato base64.
+# <a href="https://guscarpim.github.io/upload-image-react-base64/" target="_blank">Clique aqui para ver o projeto em ação </a>
 
 ## Linguagens utilizadas
 
