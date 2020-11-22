@@ -109,7 +109,7 @@ export const Card = styled.div<{ logo: string, width: number, height: number }>`
     justify-content: center;
     flex-direction: column;
     position: absolute;
-    margin-top: 90px;
+    margin-top: 120px;
     width: 80%;
     text-align: center;
     padding-top: 20px;
