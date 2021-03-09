@@ -155,6 +155,7 @@ export const Perfil = styled.div<{ top: number, width: number, height: number }>
     height: ${props => props.height}px;
     border-radius: 100%;
     transition: all 1s;
+    object-fit: cover;
   }
 
   input[type="file"] {
