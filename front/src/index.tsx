@@ -1,8 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import reportWebVitals from './reportWebVitals';
-import Upload from './pages/Upload';
-import GlobalStyles from './globalStyles';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import reportWebVitals from './reportWebVitals'
+import Upload from './pages/Upload'
+import GlobalStyles from './globalStyles'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -10,6 +10,6 @@ ReactDOM.render(
     <Upload />
   </React.StrictMode>,
   document.getElementById('root')
-);
+)
 
-reportWebVitals();
+reportWebVitals()

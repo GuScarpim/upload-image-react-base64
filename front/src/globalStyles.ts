@@ -1,7 +1,7 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
-  input, button, textarea { 
+  input, button, textarea {
     font-family: Helvetica;
   }
 
@@ -50,4 +50,4 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-export default GlobalStyle;
+export default GlobalStyle
