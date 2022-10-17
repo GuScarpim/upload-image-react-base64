@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
@@ -38,8 +38,6 @@ export const Card = styled.div<{ logo: string, width: number, height: number }>`
   flex-direction: column;
   align-items: center;
   position: relative;
-  /* width: 310px;
-  height: 600px; */
   width: ${props => props.width}px;
   height: ${props => props.height}px;
   padding: 15px;
@@ -57,7 +55,7 @@ export const Card = styled.div<{ logo: string, width: number, height: number }>`
   background-position: 50% 5%, 200% -40%;
   background-size: 55%, 80%;
   animation: effectShow .4s cubic-bezier(.1,.82,.25,1);
-  
+
   &:hover {
     transition: all 0.6s;
     box-shadow: 0px 0px 20px 10px #387289;
@@ -74,7 +72,7 @@ export const Card = styled.div<{ logo: string, width: number, height: number }>`
     }
   }
 
-  button { 
+  button {
     &:nth-last-child(2) {
       bottom: 55px !important;
       width: 80%;
@@ -130,7 +128,7 @@ export const Card = styled.div<{ logo: string, width: number, height: number }>`
       white-space: nowrap;
       text-overflow: ellipsis;
     }
-  }  
+  }
 `
 
 export const Perfil = styled.div<{ top: number, width: number, height: number }>`
@@ -144,13 +142,13 @@ export const Perfil = styled.div<{ top: number, width: number, height: number }>
   align-items: center;
   transition: all 1s;
 
-  svg { 
+  svg {
     width: 80px;
     height: 80px;
     transition: all 1s;
   }
 
-  img { 
+  img {
     width: ${props => props.width}px;
     height: ${props => props.height}px;
     border-radius: 100%;
